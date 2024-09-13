@@ -41,12 +41,13 @@ jobs:
           username: ${{ secrets.SSH_DEV_USER }}
           key: ${{ secrets.SSH_DEV_KEY }}
           script: |
-            echo 'Hello! ' $(whoami)
+            echo 'Hello!
+            ls -al
 
       - name: Remove Github Actions IP from security group # EC2 인스턴스 인바운드 규칙 제거
         run: |
           aws ec2 revoke-security-group-ingress \
-            --group-id ${{ secrets.SECURITY_GROUP_ID }} \
+            --group-id ${{ secrets.AWS_SECURITY_GROUP_ID }} \
             --protocol tcp \
             --port 22 \
             --cidr ${{ steps.ip.outputs.ipv4 }}/32
