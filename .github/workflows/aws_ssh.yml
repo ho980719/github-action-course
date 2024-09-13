@@ -25,7 +25,7 @@ jobs:
       - name: Add Github Actions IP to Security group # EC2 인스턴스 인바운드 규칙에 Github Public IP 추가
         run: |
           aws ec2 authorize-security-group-ingress \
-            --group-id ${{ secrets.SECURITY_GROUP_ID }} \
+            --group-id ${{ secrets.AWS_SECURITY_GROUP_ID }} \
             --protocol tcp \
             --port 22 \
             --cidr ${{ steps.ip.outputs.ipv4 }}/32
